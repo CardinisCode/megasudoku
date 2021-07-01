@@ -1,7 +1,6 @@
 import pygame
 
 
-
 # initialise the pygame font
 pygame.font.init()
  
@@ -9,7 +8,7 @@ pygame.font.init()
 screen = pygame.display.set_mode((750, 900))
 
 # Title and Icon
-pygame.display.set_caption("SUDOKU SOLVER USING BACKTRACKING")
+pygame.display.set_caption("SUDOKU PLAYER")
 img = pygame.image.load('icon2.png')
 pygame.display.set_icon(img)
  
@@ -18,7 +17,7 @@ y = 0
 dif = 750 / 25
 val = 0
 input_number = ""
-original_problem = "5x5_default.csv"
+original_problem = "25x25_default.csv"
 # Default Sudoku Board (9x9).
 
 
@@ -28,7 +27,7 @@ def load_grid(filename):
         return [[int(i) for i in x.split(',')] for x in lines]
 
 def save_grid(filename, local_grid):
-    with open("%s_%s" % (filename, "save"), 'w') as f:
+    with open("%s_%s" % ("save", filename), 'w') as f:
         for line in local_grid:
             csv = ','.join([str(s) for s in line])
             f.write("%s\n" % csv)
@@ -217,7 +216,7 @@ while run:
                 save_grid(original_problem, grid)
 
             if event.key == pygame.K_l:
-                grid = load_grid("%s_%s" % (original_problem, "save"))
+                grid = load_grid("%s_%s" % ("save", original_problem))
 
             if event.key == pygame.K_RETURN: # auto solve
                 flag2 = 1  
